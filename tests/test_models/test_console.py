@@ -138,5 +138,22 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("show BaseModel abcd-123")
             self.assertEqual(
                     "** no instance found **\n", f.getvalue())
+
+    def test_destroy(self):
+        """ Tests destroy command input """
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("destroy")
+            self.assertEqual(
+                "** class name missing **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("destroy User")
+            self.assertEquual(
+                 "** instance id missing **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("destroy BaseModel 12345")
+            self.assertEqual(
+                "** no instance found **\n", f.getvalue())
+
 if __name__ == "__main__":
+    
     unittest.main()
