@@ -257,6 +257,17 @@ class TestConsole(unittest.TestCase):
         self.assertTrue(isinstance(Snick, str))
 
 
+    def test_z_show(self):
+        """Test alternate show command inpout"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("safdsa.show()")
+            self.assertEqual(
+                "** class doesn't exist **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("BaseModel.show(abcd-123)")
+            self.assertEqual(
+                "** no instance found **\n", f.getvalue())
+
 
     def test_update(self):
         """ Tests alternate destroy command input """
