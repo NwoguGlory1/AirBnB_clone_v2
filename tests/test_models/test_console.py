@@ -196,6 +196,43 @@ class TestConsole(unittest.TestCase):
                 "** value missing **\n", f.getvalue())
 
 
+    def test_destroy(self):
+        """Test alternate destroy command inpout"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("Galaxy.destroy()")
+            self.assertEqual(
+                "** class doesn't exist **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("User.destroy(12345)")
+            self.assertEqual(
+                "** no instance found **\n", f.getvalue())
+
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == "db", "No apply for db")
+
+
+    def test_update(self):
+        """ Tests alternate destroy command input """
+        with patch('sys.stdout', new=StrinIO()) as f:
+            self.consol.onecmd("sldkfjsl.update()")
+            self.assertEqual(
+                "** class doesn't exist **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("User.update(12345)")
+            self.assertEqual(
+                "** no instance found **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("all User")
+            obj = f.getvalue()
+        my_id = obj[obj.find('(')+1:obj.find(')')]
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("User.update(" + my_id + ")")
+            self.assertEqual(
+                "** attribute name missing **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("User.update(" + my_id + ", name)")
+            self.assertEqual(
+                "** value missing **\n", f.getvalue())
+
 
 
 if __name__ == "__main__":
