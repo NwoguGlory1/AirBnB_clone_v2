@@ -20,7 +20,7 @@ from models.review import Review
 from models.engine.file_storage import FileStorage
 
 class TestConsole(unittest.TestCase):
-    """ this tests the console"""
+    """ Tests the console"""
 
     @classmethod
     def setUpClass(cls):
@@ -47,6 +47,7 @@ class TestConsole(unittest.TestCase):
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(["console.py"])
         self.assertEqual(p.total_errors, 0, 'fix Pep8')
+
 
 
     def tets_docstrins_in_console(self):
