@@ -19,6 +19,7 @@ from models.review import Place
 from models.review import Review
 from models.engine.file_storage import FileStorage
 
+
 class TestConsole(unittest.TestCase):
     """ Tests the console"""
 
@@ -27,12 +28,10 @@ class TestConsole(unittest.TestCase):
         """ setup for the test """
         cls.consol = HBNBCommand()
 
-
     @classmethod
     def teardown(cls):
         """ tears down at the end of the test """
         del cls.consol
-
 
     def tearDown(self):
         """ Remove temporary file(file.json) created as a result """
@@ -41,14 +40,11 @@ class TestConsole(unittest.TestCase):
         except Exception:
             pass
 
-
     def test_pep8_console(self):
         """ Perp8 console """
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(["console.py"])
         self.assertEqual(p.total_errors, 0, 'fix Pep8')
-
-
 
     def tets_docstrins_in_console(self):
         """ checks for docstrings """
@@ -65,13 +61,11 @@ class TestConsole(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.strip_clean.__doc__)
         self.assertIsNotNone(HBNBCommand.default.__doc__)
 
-
     def test_emptyline(self):
         """ Tests empty line input """
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("\n")
             self.assertEqual('', f.getvalue())
-
 
     def tets_quit(self):
         """ Tests create command input """
@@ -120,7 +114,6 @@ class TestConsole(unittest.TestCase):
         self.assertEqual(Snick, 'El"Macho')
         self.assertTrue(isinstance(Snick, str))
 
-
     def test_show(self):
         """ Tests show command input"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -164,7 +157,6 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("all State")
             self.assertEqual("[]\n", f.getvalue())
 
-
     def test_update(self):
         """ Tests update command input """
         with patch('sys.stdout', new=StringIO()) as f:
@@ -196,7 +188,6 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** value missing **\n", f.getvalue())
 
-
     def test_destroy(self):
         """Test alternate destroy command inpout"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -209,8 +200,6 @@ class TestConsole(unittest.TestCase):
                 "** no instance found **\n", f.getvalue())
 
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == "db", "No apply for db")
-
-
     def test_create(self):
         """Test create command inpout"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -257,7 +246,6 @@ class TestConsole(unittest.TestCase):
         self.assertEqual(Snick, 'El"Macho')
         self.assertTrue(isinstance(Snick, str))
 
-
     def test_z_show(self):
         """Test alternate show command inpout"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -268,7 +256,6 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("BaseModel.show(abcd-123)")
             self.assertEqual(
                 "** no instance found **\n", f.getvalue())
-
 
     def test_update(self):
         """ Tests alternate destroy command input """
@@ -294,7 +281,5 @@ class TestConsole(unittest.TestCase):
                 "** value missing **\n", f.getvalue())
 
 
-
 if __name__ == "__main__":
-    
     unittest.main()
