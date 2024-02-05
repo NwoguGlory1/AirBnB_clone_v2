@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-# Script that generates a .tgz archive from the contents of the web_static folder of AirBnB clone, using do_pack
+#!/usr/bin/python3
+""" Generates a .tgz archive from contents of the web_static folder of AirBnB clone """
 
 from datetime import datetime
 from fabric.api import *
