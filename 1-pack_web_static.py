@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 # Script that generates a .tgz archive from the contents of the web_static folder of AirBnB clone, using do_pack
 
-fro web_static import task,
-@task
+from datetime import datetime
+from fabric.api import *
+
 def do_pack():
+    """ 
+    Generates a .tgz archive from the contents
+    of the web_static folder
+    """
     try:
         Today = datetime.now().strftime('%Y%m%d%H%M%S')
         path = "versions/web_static_{:s}.tgz".format(Today)
@@ -26,4 +31,3 @@ def do_pack():
 
     except:
         return None
-
