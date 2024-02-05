@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-""" Generates a .tgz archive from contents of the web_static folder of AirBnB clone """
+""" Generates a .tgz archive from web_static folder of AirBnB clone """
 
 from datetime import datetime
 from fabric.api import *
 
+
 def do_pack():
-    """ 
+    """
     Generates a .tgz archive from the contents
     of the web_static folder
     """
