@@ -26,7 +26,7 @@ def do_pack():
         local('tar -cvzf {:s} web_static'.format(path))
 
         with hide('running'):
-        """ counts the no of bytes in path ^ capture captures byte count"""
+            """ counts the no of bytes in path ^ capture captures byte count"""
             size = local('wc -c < {:s}'.format(path), capture=True)
 
         print('web_static packed: {:s} -> {:s}Bytes'.format(path, size))
