@@ -1,9 +1,14 @@
-#!/usr/bin/python3
+!/usr/bin/python3
 """ Generates a .tgz archive from web_static folder of AirBnB clone """
 
 from datetime import datetime
 from fabric.api import *
 from os import path
+
+"""Define your web server hosts/user """
+env.hosts = ['100.25.162.179', '54.161.253.7']
+env.user = "ubuntu"
+env.key_filename = ['']
 
 
 def do_pack():
@@ -28,7 +33,7 @@ def do_pack():
 
         with hide('running'):
             """ counts the no of bytes in path & capture captures byte count"""
-        size = local('wc -c < {:s}'.format(path), capture=True)
+            size = local('wc -c < {:s}'.format(path), capture=True)
 
         print('web_static packed: {:s} -> {:s}Bytes'.format(path, size))
 
@@ -43,11 +48,6 @@ def do_deploy(archive_path):
     Deploy an archive to multiple web servers.
     archive_path: Local path to the archive file
     """
-
-    """Define your web server hosts """
-    env.hosts = ['100.25.162.179', '54.161.253.7']
-
-    archive_path = do_pack()
 
     if not path.exists(archive_path):
         return False
@@ -64,7 +64,7 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/', sudo=True)
 
         """" creates directories for archive before decompressn"""
-        run('mkdir -p /data/web_static/releases/{:s}/'.format(path_nx))
+        run('sudo mkdir -p /data/web_static/releases/{:s}/'.format(path_nx))
 
         """
         Extracts archive to
@@ -76,27 +76,28 @@ def do_deploy(archive_path):
         /data/web_static/releases: path where archive isdecompressed, path_nx
         """
 
-        run('tar -xvzf /tmp/{:s} -C /data/web_static/releases/{:s}/'{}'
-            .format(path_yx, path_nx))
+        run('sudo tar -xvzf /tmp/{:s} -C /data/web_static/releases/{:s}/'.
+            format(path_yx, path_nx))
 
         """ Delete the archive fpath_yx from /tmp/"""
-        run('rm /tmp/{:s}'.format(path_yx))
+        run('sudo rm /tmp/{:s}'.format(path_yx))
 
         """ moved all files/dir from web_static subdir to releases"""
-        run('mv /data/web_static/releases/{:s}/web_static/*'
+        run('sudo mv /data/web_static/releases/{:s}/web_static/*'
             ' /data/web_static/releases/{:s}/'.
             format(path_nx, path_nx))
 
         """ Deletes then now empty web_static subdir"""
-        run('rm -rf /data/web_static/releases/{:s}/web_static'.format(path_nx))
+        run('sudo rm -rf /data/web_static/releases/{:s}/web_static'.
+                format(path_nx))
 
         """Deletes symbolic link created in task 0 """
-        run('rm -rf /data/web_static/current')
+        run('sudo rm -rf /data/web_static/current')
 
         """ Create new sym link /data/web_static/current now linked
         to /data/web_static/releases/<archive filename without .tgz """
         run('ln -s /data/web_static/releases/{:s}/ /data/web_static/current'.
-            format(path_nx)')
+            format(path_nx))
 
         print("New version deployed!")
         return True
