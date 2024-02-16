@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello():
     """ Function that executes if user accesses '/' URL"""
-    return f'Hello, HBNB!'
+    return f'Hello HBNB!'
 
 if __name__ == '__main__':
     """
