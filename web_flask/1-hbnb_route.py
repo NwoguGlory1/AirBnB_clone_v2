@@ -19,13 +19,6 @@ def display_hbnb():
     return f'HBNB'
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def display_C(text):
-    """ Function that exceutes if user accesses '/c/<text> """
-    new_text = text.replace('_', ' ')
-    return f'C {new_text}'
-
-
 if __name__ == '__main__':
     """
     Ensures script runs only when excuted directly,
