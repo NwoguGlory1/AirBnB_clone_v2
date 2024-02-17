@@ -37,7 +37,7 @@ def display_Python(text='is cool'):
 @app.route('/number/<n>', strict_slashes=False)
 def display_n():
     """ Function that executes if user accesses '/number/<n>' """
-    if type(n) is class 'int':
+    if isinstance(n, int):
         return f'n is a number'
     else:
         pass
