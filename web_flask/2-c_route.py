@@ -26,13 +26,6 @@ def display_C(text):
     return f'C {new_text}'
 
 
-@app.route('/python/<text>', strict_slashes=False)
-def display_Python(text='is cool'):
-    """ Function that executes if user accesses '/python/<text>' """
-    new_text = text.replace('_', ' ')
-    return f'Python {'new_text'} is cool'
-
-
 if __name__ == '__main__':
     """
     Ensures script runs only when excuted directly,
