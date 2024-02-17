@@ -39,8 +39,6 @@ def display_n():
     """ Function that executes if user accesses '/number/<n>' """
     if isinstance(n, int):
         return f'n is a number'
-    else:
-        pass
 
 
 if __name__ == '__main__':
