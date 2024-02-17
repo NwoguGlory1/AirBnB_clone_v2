@@ -30,7 +30,7 @@ def display_C(text):
 def display_Python(text='is cool'):
     """ Function that executes if user accesses '/python/<text>' """
     new_text = text.replace('_', ' ')
-    return f'Python {'new_text'} is cool'
+    return f'Python {new_text}'
 
 
 if __name__ == '__main__':
