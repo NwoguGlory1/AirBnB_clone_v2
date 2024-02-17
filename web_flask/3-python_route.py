@@ -33,12 +33,6 @@ def display_Python(text='is cool'):
     return f'Python {'new_text'} is cool'
 
 
-@app.route('/number/<n>', strict_slashes=False)
-def display_n():
-    """ Function that executes if user accesses '/number/<n>' """
-    return f'Python {'new_text'} is cool'
-
-
 if __name__ == '__main__':
     """
     Ensures script runs only when excuted directly,
