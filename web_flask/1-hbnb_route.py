@@ -6,15 +6,25 @@ from flask import Flask
 app = Flask(__name__)
 """ Creates an instance of class, Flask"""
 
+
 @app.route('/', strict_slashes=False)
 def hello():
     """ Function that executes if user accesses '/' URL"""
     return f'Hello HBNB!'
 
+
 @app.route('/hbnb', strict_slashes=False)
-def display():
-    """ """
+def display_hbnb():
+    """ Function that exceutes if user accesses '/hbnb' """
     return f'HBNB'
+
+
+@app.route('/c/<text>', strict_slashes=False)
+def display_C(text):
+    """ Function that exceutes if user accesses '/c/<text> """
+    new_text = text.replace('_', ' ')
+    return f'C {new_text}'
+
 
 if __name__ == '__main__':
     """
