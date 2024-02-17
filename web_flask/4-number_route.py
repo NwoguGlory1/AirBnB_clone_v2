@@ -37,7 +37,7 @@ def display_Python(text='is cool'):
 @app.route('/number/<int:n>', strict_slashes=False)
 def display_n(n):
     """ Function that executes if user accesses '/number/<n>' """
-        return f'{n} is a number'
+        return f'n is a number'
 
 
 if __name__ == '__main__':
