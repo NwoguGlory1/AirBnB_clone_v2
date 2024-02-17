@@ -34,7 +34,7 @@ def display_Python(text='is cool'):
     return f'Python {new_text}'
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def display_n(n):
     """ Function that executes if user accesses '/number/<n>' """
     if n.isdigit():
