@@ -52,7 +52,7 @@ def template_n(n):
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def template_odd_even():
+def template_odd_even(n):
     """
     Function that executes if user accesses '/number_odd_or_even/<int:n>'
     """
