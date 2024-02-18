@@ -3,7 +3,6 @@
 from flask import Flask
 from flask import render_template
 from models.state import Storage
-mysql -u hbnb_dev -p hbnb_dev_db < 7-dump
 
 """ imports Flask webframe, render template """
 
