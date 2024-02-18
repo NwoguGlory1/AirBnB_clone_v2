@@ -42,9 +42,8 @@ def display_n(n):
     return f'{n} is a number'
 
 
-@app.route('/number_template/', strict_slashes=False)
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def template_n(n=None):
+def template_n(n):
     """
     Function that executes if user accesses '/number_template/
     or /number_template/<int:n>
