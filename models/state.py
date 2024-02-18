@@ -19,10 +19,10 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
-            """getter for list of citis"""
+            """getter for list of cities"""
             new_list = []
             all_cities = models.storage.all(City)
             for key in all_cities:
-                if all_cities[key] == self.id:
+                if all_cities[key].state_id == self.id:
                     new_list.append(all_cities[key])
             return new_list
