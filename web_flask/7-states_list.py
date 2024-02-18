@@ -3,6 +3,7 @@
 from flask import Flask
 from flask import render_template
 from models.state import Storage
+mysql -u hbnb_dev -p hbnb_dev_db < 7-dump
 
 """ imports Flask webframe, render template """
 
@@ -15,7 +16,7 @@ def states_list():
     """
     Function that executes if user accesses '/states_list'
     """
-    my_model_instances = storage.all(State)
+    my_model_instances = storage.all(FileStorage)
     return render_template('7-states_list.html', data=my_model_instances)
 
 
