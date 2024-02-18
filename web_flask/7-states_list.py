@@ -2,7 +2,7 @@
 """ Script that starts a Flask web application """
 from flask import Flask
 from flask import render_template
-from models import storage
+from models.state import Storage
 
 """ imports Flask webframe, render template """
 
@@ -15,8 +15,8 @@ def states_list():
     """
     Function that executes if user accesses '/states_list'
     """
-    my_model_instances = storage.all(FileStorage)
-    return render_template('7-states_list.html', data=my_model_instances )
+    my_model_instances = storage.all(State)
+    return render_template('7-states_list.html', data=my_model_instances)
 
 
 @app.teardown_appcontext
