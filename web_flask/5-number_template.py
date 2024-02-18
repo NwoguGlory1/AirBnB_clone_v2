@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """ Script that starts a Flask web application """
 from flask import Flask
-""" imports Flask webframe """
 from flask import render_template
-""" imports render template """
+""" imports Flask webframe, render template """
 
 app = Flask(__name__)
 """ Creates an instance of class, Flask"""
@@ -50,7 +49,6 @@ def template_n(n):
     or /number_template/<int:n>
     """
     return render_template('5-number.html', n=n)
-
 
 
 if __name__ == '__main__':
