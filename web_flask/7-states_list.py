@@ -17,7 +17,7 @@ def states_list():
     Function that executes if user accesses '/states_list'
     """
     states = storage.all(State)
-    return render_template('7-states_list.html', data=states)
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext

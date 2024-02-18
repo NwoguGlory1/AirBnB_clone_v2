@@ -39,7 +39,7 @@ class DBStorage:
         """returns current database session"""
         objs = {}
         if cls is not None:
-            for obj in self.__session.query(models[cls]):
+            for obj in self.__session.query(cls).all():
                 objs[obj.__class__.__name__ + '.' + obj.id] = obj
         else:
             for model in models:
@@ -62,7 +62,7 @@ class DBStorage:
 
     def reload(self):
         """Reload tables in the database"""
-        Base.metadata.create_all(self.__engine)
+        # Base.metadata.create_all(self.__engine)
         session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         self.__session = scoped_session(session)
 
