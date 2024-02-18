@@ -68,6 +68,5 @@ class FileStorage:
         Public method that calls reload() method for deserializing
         JSON file to objects
         """
-    storage = FileStorage()
-    storage.reloaad()
-    # call reload method
+        self.reloaad()
+        # call reload method
