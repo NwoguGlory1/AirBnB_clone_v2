@@ -49,7 +49,7 @@ def template_n(n=None):
     Function that executes if user accesses '/number_template/
     or /number_template/<int:n>
     """
-     return render_template('5-number.html', n=None)
+    return render_template('5-number.html', n=n)
 
 
 
