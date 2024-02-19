@@ -16,11 +16,11 @@ def cities_by_states():
     """
     Function that executes if user accesses '/cities_by_states'
     """
-    cities = storage.all(State)
-    return render_template('8-cities_by_states.html', states=cities)
+    states = storage.all(State)
+    return render_template('8-cities_by_states.html', states=states)
 
-def cities(self):
-    return [city for city in models.storage.all(City).values() if city.state_id == self.id]
+# def cities(self):
+# return [city for city in models.storage.all(City).values() if city.state_id == self.id]
 
 @app.teardown_appcontext
 def teardown_appcontext(exception):
