@@ -11,16 +11,23 @@ app = Flask(__name__)
 """ Creates an instance of class, Flask"""
 
 
-@app.route('/cities_by_states', strict_slashes=False)
-def cities_by_states(id):
+@app.route('/states', strict_slashes=False)
+def display_states():
     """
     Function that executes if user accesses '/cities_by_states'
     """
-    states = storage.get(State, id)
+    states = storage.all(State).values()
+    return render_template('9-states.html', states=states)
+
+
+@app.route('/states/<id>', strict_slashes=False)
+def display_state_cities(id):
+    """ Display a HTML page with cities of a specific State """
+    state = storage.get(State, id)
     if state:
-        return render_template('9-states.html', state=state)
+        return render_template('9-states_cities.html', state=state)
     else:
-        pass
+        return render_template('9-states_cities.html', state=state)
 
 @app.teardown_appcontext
 def teardown_appcontext(exception):
