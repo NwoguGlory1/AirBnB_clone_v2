@@ -11,11 +11,11 @@
 				State:{{ state.id }}: <strong>{{ state.name }}</strong>
 				<UL>
 					{% if storage.__class__.__name__ == 'DBStorage' %}
-						{% for city in state.cities|sort(attribute='name') %}
-							<LI>
-								City:{{ city.id }}: <strong>{{ city.name }}</strong>
-							</LI>
-						{% endfor %}
+					{% for city in state.cities|sort(attribute='name') %}
+					<LI>
+						City:{{ city.id }}: <strong>{{ city.name }}</strong>
+					</LI>
+					{% endfor %}
 				</UL>
 			</LI>
 		{% endfor %}
